@@ -1,8 +1,8 @@
 # python wechat.py responses request from wechat platform
 from flask import Flask, request
-# from flask import make_response
+from flask import make_response
 import hashlib
-# import MsgParser
+import MsgParser
 app = Flask(__name__)
 
 # response at 127.0.0.1/
