@@ -73,4 +73,4 @@ def simple_parser(oridata):
     fromuser = xmldata.find("FromUserName").text
     touser = xmldata.find("ToUserName").text
     msg_type = xmldata.find("MsgType").text
-    return [fromuser, touser, msg_type]
+    return {'from':fromuser, 'to':touser, 'type':msg_type}
