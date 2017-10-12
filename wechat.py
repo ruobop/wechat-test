@@ -38,7 +38,9 @@ def weixin():
         # print "POST"
         xmldict = MsgParser.recv_msg(request.data)
         # print '***' + xmldict['MsgType'] + '***'
-        if xmldict['MsgType'] != 'img':
+        if xmldict['MsgType'] == 'img':
+            pass
+        else:
             reply = MsgParser.submit_msg(xmldict)
             response = make_response(reply)
             response.content_type = 'application/xml'
