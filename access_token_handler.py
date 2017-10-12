@@ -9,7 +9,6 @@ def get_access_token():
     url = ('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_' +
           'credential&appid=wxddae0de1b0e43c9e&secret=3694ea0bc550f58' +
           '15547d4e182ab42b3')
-    print url
     response = requests.get(url)
     data = response.json()
     data['create_time'] = time.time()
