@@ -21,8 +21,8 @@ def upload_temp_media(filepath):
     files = {'media': open(filepath, 'rb')}
     response = requests.post(url, files=files)
     data = response.json()
-    if 'MEDIA_ID' in data:
-        return data['MEDIA_ID']
+    if 'media_id' in data:
+        return data['media_id']
     else:
         return 'error'
 
