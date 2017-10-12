@@ -36,14 +36,15 @@ def weixin():
             return "Your request method is: " + request.method
     elif request.method == 'POST':  # POST
         # print "POST"
-        xmldict = MsgParser.recv_msg(request.data)
-        # print '***' + xmldict['MsgType'] + '***'
-        if xmldict['MsgType'] == 'img':
+        oridata = request.data # store incoming data
+        if msgtype(oridata) == 'img':
             pass
         else:
+            xmldict = MsgParser.recv_msg(oridata)
             reply = MsgParser.submit_msg(xmldict)
             response = make_response(reply)
             response.content_type = 'application/xml'
             return response
+
 if __name__ == '__main__':
     app.run(host = '0.0.0.0', port = 80)
