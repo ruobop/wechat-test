@@ -37,7 +37,7 @@ def weixin():
     elif request.method == 'POST':  # POST
         # print "POST"
         oridata = request.data # store incoming data
-        if msg_type(oridata) == 'img':
+        if MsgParser.msg_type(oridata) == 'img':
             pass
         else:
             xmldict = MsgParser.recv_msg(oridata)
