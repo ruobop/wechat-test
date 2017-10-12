@@ -5,7 +5,7 @@ import json
 import requests
 import time
 
-def get_access_token():
+def new_access_token():
     url = ('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_' +
           'credential&appid=wxddae0de1b0e43c9e&secret=3694ea0bc550f58' +
           '15547d4e182ab42b3')
@@ -23,3 +23,8 @@ def check_expire():
         if d['create_time'] + 6000 > time.time():
             return False # no key create_time exists, need to update access_token
     return True
+
+def retrieve_token():
+    with open('access_token.json') as data:
+        d = json.load(data)
+    return d['access_token']
