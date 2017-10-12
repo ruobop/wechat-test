@@ -33,7 +33,7 @@ def submit_msg(content_dict={"": ""}, type="text"):
     toname = content_dict["FromUserName"]
     fromname = content_dict["ToUserName"]
     content = content_dict["Content"]
-    content = "收到文字！"
+    content = "没有收到图片，请发给我图片！"
     reply = """
     <xml>
         <ToUserName><![CDATA[%s]]></ToUserName>
