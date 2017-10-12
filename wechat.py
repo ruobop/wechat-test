@@ -35,8 +35,9 @@ def weixin():
         else:
             return "Your request method is: " + request.method
     else:  # POST
-        print "POST"
+        # print "POST"
         xmldict = MsgParser.recv_msg(request.data)
+        print '***' + xmldict['MsgType'] + '***'
         reply = MsgParser.submit_msg(xmldict)
         response = make_response(reply)
         response.content_type = 'application/xml'

@@ -18,7 +18,10 @@ def recv_msg(oriData):
     tousername = xmldata.find("ToUserName").text
     # 消息的内容
     content = xmldata.find("Content").text
-    xmldict = {"FromUserName": fromusername,"ToUserName": tousername, "Content": content}
+    # 消息的类型
+    msgtype = xmldata.find("MsgType").text
+    xmldict = {"FromUserName": fromusername, "ToUserName": tousername,
+               "MsgType": msgtype, "Content": content}
     return xmldict
 def submit_msg(content_dict={"": ""}, type="text"):
     """
