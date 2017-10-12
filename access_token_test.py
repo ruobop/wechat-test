@@ -3,10 +3,10 @@
 
 import access_token_handler
 
-print check_expire()
-print get_access_token
+print access_token_handler.check_expire()
+print access_token_handler.get_access_token
 
-if check_expire():
-    print get_access_token
+if access_token_handler.check_expire():
+    print access_token_handler.get_access_token
 else:
     print 'Not expire yet!'
