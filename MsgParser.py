@@ -47,6 +47,12 @@ def submit_msg(content_dict={"": ""}, type="text"):
     resp_str = reply % (toname, fromname, int(time.time()), content)
     return resp_str
 def msg_type(oridata):
+    """
+    编制回复信息
+    :param content_dict:
+    :param type:
+    :return:
+    """
     xmldata = ET.fromstring(oriData)
     datatype = xmldata.find("MsgType").text
     return datatype
