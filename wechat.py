@@ -40,8 +40,8 @@ def weixin():
         # print '***' + xmldict['MsgType'] + '***'
         if xmldict['MsgType'] != 'img':
             reply = MsgParser.submit_msg(xmldict)
-        response = make_response(reply)
-        response.content_type = 'application/xml'
-        return response
+            response = make_response(reply)
+            response.content_type = 'application/xml'
+            return response
 if __name__ == '__main__':
     app.run(host = '0.0.0.0', port = 80)
