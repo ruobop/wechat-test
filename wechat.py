@@ -37,14 +37,15 @@ def weixin():
     elif request.method == 'POST':  # POST
         # print "POST"
         oridata = request.data # store incoming data
-        if MsgParser.msg_type(oridata) == 'img':
-            pass
+        [fromuser, touser, msg_type] = MsgParser.simple_parser(oridata)
+        if msg_type == 'img':
+            reply = MsgParser.make_textmsg('收到了图片！', touser, fromuser)
         else:
-            xmldict = MsgParser.recv_msg(oridata)
-            reply = MsgParser.submit_msg(xmldict)
-            response = make_response(reply)
-            response.content_type = 'application/xml'
-            return response
+            reply = MsgParser.make_textmsg('没有收到图片，请发给我图片！',
+                                           touser, fromuser)
+        response = make_response(reply)
+        response.content_type = 'application/xml'
+        return response
 
 if __name__ == '__main__':
     app.run(host = '0.0.0.0', port = 80)
