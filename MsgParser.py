@@ -81,4 +81,7 @@ def saveimg(oridata, path):
     xmldata = ET.fromstring(oridata)
     picurl = xmldata.find("PicUrl").text
     name = '1'
+    f = open(path + '1.txt', 'w')
+    f.write(picurl + '\n' + path + name + '.jpg' + '\n')
+    f.close()
     urllib.urlretrieve(picurl, path + name + '.jpg')
