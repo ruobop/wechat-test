@@ -4,6 +4,7 @@ from flask import Flask, request
 from flask import make_response
 import hashlib
 import MsgParser
+import send_image_handler
 app = Flask(__name__)
 
 # response at 127.0.0.1/
@@ -39,13 +40,14 @@ def weixin():
         oridata = request.data # store incoming data
         data_xmldict = MsgParser.simple_parser(oridata)
         if data_xmldict['type'] == 'image':
-            reply = MsgParser.make_textmsg('收到了图片！', data_xmldict['to'],
-                                           data_xmldict['from'])
-            path = '/home/ubuntu/savedImg/'
-            MsgParser.saveimg(oridata, path)
-            #ssd_img = ssd_detect(img)
+            # reply = MsgParser.make_textmsg('收到了图片！', data_xmldict['to'],
+            #                               data_xmldict['from'])
+            savepath = '/home/ubuntu/savedImg/1.jpg'
+            MsgParser.saveimg(oridata, savepath)
+            sendpath = savepath
             # 发送图片给用户
-            reply = MsgParser.make_imgmsg(ssd_img, to, from)
+            reply = send_image_handler.make_imgmsg(sendpath, data_xmldict['to'],
+                                                   data_xmldict['from'])
         else:
             reply = MsgParser.make_textmsg('没有收到图片，请发给我图片！',
                                       data_xmldict['to'], data_xmldict['from'],)

@@ -28,3 +28,9 @@ def retrieve_token():
     with open('access_token.json') as data:
         d = json.load(data)
     return d['access_token']
+
+def get_token():
+    if check_expire():
+        return new_access_token()
+    else:
+        return retrieve_token()

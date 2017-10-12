@@ -77,12 +77,11 @@ def simple_parser(oridata):
     msg_type = xmldata.find("MsgType").text
     return {'from':fromuser, 'to':touser, 'type':msg_type}
 
-def saveimg(oridata, path):
+def saveimg(oridata, filepath):
     xmldata = ET.fromstring(oridata)
     picurl = xmldata.find("PicUrl").text
-    name = '1'
-    f = open(path + '1.txt', 'w')
-    f.write(picurl + '\n' + path + name + '.jpg' + '\n')
-    f.close()
-    print '********************\n' + picurl + '\n********************'
-    urllib.urlretrieve(picurl, path + name + '.jpg')
+    # f = open(path + '1.txt', 'w')
+    # f.write(picurl + '\n' + path + name + '.jpg' + '\n')
+    # f.close()
+    #print '********************\n' + picurl + '\n********************'
+    urllib.urlretrieve(picurl, filepath) # save url to jpg file
