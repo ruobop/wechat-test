@@ -53,6 +53,6 @@ def msg_type(oridata):
     :param type:
     :return:
     """
-    xmldata = ET.fromstring(oriData)
+    xmldata = ET.fromstring(oridata)
     datatype = xmldata.find("MsgType").text
     return datatype
