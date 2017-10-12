@@ -34,11 +34,12 @@ def weixin():
                 return "Authentification failed!"
         else:
             return "Your request method is: " + request.method
-    else:  # POST
+    elif request.method == 'POST':  # POST
         # print "POST"
         xmldict = MsgParser.recv_msg(request.data)
-        print '***' + xmldict['MsgType'] + '***'
-        reply = MsgParser.submit_msg(xmldict)
+        # print '***' + xmldict['MsgType'] + '***'
+        if xmldict['MsgType'] != 'img':
+            reply = MsgParser.submit_msg(xmldict)
         response = make_response(reply)
         response.content_type = 'application/xml'
         return response
