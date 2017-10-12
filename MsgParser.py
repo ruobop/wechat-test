@@ -17,13 +17,13 @@ def recv_msg(oriData):
     # 接收方的ID
     tousername = xmldata.find("ToUserName").text
     # 消息的内容
-    content = xmldata.find("Content").text
+    # content = xmldata.find("Content").text
     # 消息的类型
-    msgtype = xmldata.find("MsgType").text
-    xmldict = {"FromUserName": fromusername, "ToUserName": tousername,
-               "MsgType": msgtype, "Content": content}
+    # msgtype = xmldata.find("MsgType").text
+    xmldict = {"FromUserName": fromusername, "ToUserName": tousername}
+               #"MsgType": msgtype, "Content": content}
     return xmldict
-def submit_msg(content_dict={"": ""}, type="text"):
+def submit_msg(content_dict={"": ""}):
     """
     编制回复信息
     :param content_dict:
@@ -32,7 +32,6 @@ def submit_msg(content_dict={"": ""}, type="text"):
     """
     toname = content_dict["FromUserName"]
     fromname = content_dict["ToUserName"]
-    content = content_dict["Content"]
     content = "没有收到图片，请发给我图片！"
     reply = """
     <xml>
