@@ -9,6 +9,8 @@ import access_token_handler
 import time
 import xml.etree.ElementTree as ET
 import sys
+import requests
+import json
 
 def upload_temp_media(filepath):
     access_token = access_token_handler.get_token()
