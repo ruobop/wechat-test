@@ -1,4 +1,5 @@
 # python wechat.py responses request from wechat platform
+#-*-coding:utf-8 -*-
 from flask import Flask, request
 from flask import make_response
 import hashlib

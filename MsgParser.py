@@ -1,4 +1,5 @@
 # MsgParser module
+#-*-coding:utf-8 -*-
 import time
 import xml.etree.ElementTree as ET
 import sys
