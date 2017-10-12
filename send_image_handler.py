@@ -1,17 +1,17 @@
+#-*-coding:utf-8 -*-
 # Handle sending images to wechat
 # http请求方式：POST/FORM，使用https
 # https://api.weixin.qq.com/cgi-bin/media/upload?access_token=ACCESS_TOKEN&type=TYPE
 # 正确情况下的返回JSON数据包结果如下：
 # {"type":"TYPE","media_id":"MEDIA_ID","created_at":123456789}
 
-#-*-coding:utf-8 -*-
 import access_token_handler
 import time
 import xml.etree.ElementTree as ET
 import sys
 
 def upload_temp_media(filepath):
-    access_token = get_token()
+    access_token = access_token_handler.get_token()
     type = 'image'
     url = ('https://api.weixin.qq.com/cgi-bin/media/upload?access_token=' +
            '%s&type=%s')
