@@ -69,7 +69,7 @@ def make_textmsg(text, fromuser, touser):
     resp_str = reply % (touser, fromuser, int(time.time()), text)
     return resp_str
 def simple_parser(oridata):
-    xmldata = ET.fromstring(oriData)
+    xmldata = ET.fromstring(oridata)
     fromuser = xmldata.find("FromUserName").text
     touser = xmldata.find("ToUserName").text
     msg_type = xmldata.find("MsgType").text
