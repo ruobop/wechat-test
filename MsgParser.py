@@ -3,6 +3,7 @@
 import time
 import xml.etree.ElementTree as ET
 import sys
+import urllib
 reload(sys)
 sys.setdefaultencoding('utf8')
 # def recv_msg(oriData):
