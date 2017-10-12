@@ -41,6 +41,8 @@ def weixin():
         if data_xmldict['type'] == 'image':
             reply = MsgParser.make_textmsg('收到了图片！', data_xmldict['to'],
                                            data_xmldict['from'])
+            path = '/home/ubuntu/savedImg/'
+            MsgParser.saveimg = (oridata, path)
         else:
             reply = MsgParser.make_textmsg('没有收到图片，请发给我图片！',
                                       data_xmldict['to'], data_xmldict['from'],)

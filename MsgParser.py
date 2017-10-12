@@ -68,9 +68,16 @@ def make_textmsg(text, fromuser, touser):
 	"""
     resp_str = reply % (touser, fromuser, int(time.time()), text)
     return resp_str
+
 def simple_parser(oridata):
     xmldata = ET.fromstring(oridata)
     fromuser = xmldata.find("FromUserName").text
     touser = xmldata.find("ToUserName").text
     msg_type = xmldata.find("MsgType").text
     return {'from':fromuser, 'to':touser, 'type':msg_type}
+
+def saveimg(oridata, path):
+    xmldata = ET.fromstring(oridata)
+    picurl = xmldata.find("PicUrl").text
+    name = '1'
+    urllib.urlretrieve(picurl, path + name + '.jpg')
