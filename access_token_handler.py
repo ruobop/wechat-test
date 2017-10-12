@@ -21,5 +21,5 @@ def check_expire():
         d = json.load(data)
     if 'create_time' in d:
         if d['create_time'] + 6000 > time.time():
-            return false # no key create_time exists, need to update access_token
-    return true
+            return False # no key create_time exists, need to update access_token
+    return True
