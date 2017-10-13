@@ -25,7 +25,7 @@ def ssdetect(oriimage, detectimage):
     from caffe.proto import caffe_pb2
 
     # load PASCAL VOC labels
-    labelmap_file = 'data/PMWLYZ/labelmap_pmwlyz.prototxt'
+    labelmap_file = '/home/ubuntu/caffe/data/PMWLYZ/labelmap_pmwlyz.prototxt'
     file = open(labelmap_file, 'r')
     labelmap = caffe_pb2.LabelMap()
     text_format.Merge(str(file.read()), labelmap)
@@ -45,8 +45,8 @@ def ssdetect(oriimage, detectimage):
             assert found == True
         return labelnames
 
-    model_def = 'models/VGGNet/PMWLYZ/SSD_300x300/deploy.prototxt'
-    model_weights = 'models/VGGNet/PMWLYZ/SSD_300x300/VGG_PMWLYZ_SSD_300x300_iter_17494.caffemodel'
+    model_def = '/home/ubuntu/caffe/models/VGGNet/PMWLYZ/SSD_300x300/deploy.prototxt'
+    model_weights = '/home/ubuntu/caffe/models/VGGNet/PMWLYZ/SSD_300x300/VGG_PMWLYZ_SSD_300x300_iter_17494.caffemodel'
 
     net = caffe.Net(model_def,      # defines the structure of the model
                     model_weights,  # contains the trained weights
