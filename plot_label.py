@@ -11,7 +11,7 @@ def ssdetect(oriimage, detectimage):
     plt.rcParams['image.cmap'] = 'gray'
 
     # Make sure that caffe is on the python path:
-    caffe_root = '../'  # this file is expected to be in {caffe_root}/examples
+    caffe_root = '/home/ubuntu/caffe/'  # this file is expected to be in {caffe_root}/examples
     import os
     os.chdir(caffe_root)
     import sys
