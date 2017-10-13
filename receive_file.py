@@ -2,7 +2,7 @@
 import os
 from flask import Flask, request, redirect, url_for, send_from_directory
 from werkzeug.utils import secure_filename
-import polotlabel
+import plot_label
 
 UPLOAD_FOLDER = '/home/ruobo/Desktop/wechat/wechat-test/wechat-test/'
 ALLOWED_EXTENSIONS = set(['pdf', 'png', 'jpg', 'jpeg'])
