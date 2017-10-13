@@ -2,6 +2,7 @@
 import os
 from flask import Flask, request, redirect, url_for, send_from_directory
 from werkzeug.utils import secure_filename
+import polotlabel
 
 UPLOAD_FOLDER = '/home/ruobo/Desktop/wechat/wechat-test/wechat-test/'
 ALLOWED_EXTENSIONS = set(['pdf', 'png', 'jpg', 'jpeg'])
@@ -29,7 +30,7 @@ def upload_file():
             filename = secure_filename('in_image.jpg')
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             print '***********\n' + 'Processing image!\n' + '***********'
-            ssdetect('in_image.jpg', 'ssd_in_image')
+            plotlabel.ssdetect('in_image.jpg', 'ssd_in_image')
             return send_from_directory('/home/ruobo/Desktop/wechat/wechat-test/wechat-test/',
                                        'ssd_in_image.png')
             # return app.send_static_file('in_image.jpg')
