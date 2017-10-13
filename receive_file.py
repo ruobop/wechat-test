@@ -4,7 +4,7 @@ from flask import Flask, request, redirect, url_for, send_from_directory
 from werkzeug.utils import secure_filename
 import plot_label
 
-UPLOAD_FOLDER = '/home/ruobo/Desktop/wechat/wechat-test/wechat-test/'
+UPLOAD_FOLDER = '/home/ubuntu/wechat-test/'
 ALLOWED_EXTENSIONS = set(['pdf', 'png', 'jpg', 'jpeg'])
 
 app = Flask(__name__)

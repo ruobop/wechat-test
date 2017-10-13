@@ -12,7 +12,7 @@ def send_image_to_ssd(image_path, url_port):
     return response
 
 filepath = '/home/ruobo/Desktop/VOC2019/JPEGImages/IMG_3703.jpg'
-url = 'http://127.0.0.1:9527'
+url = 'http://54.223.170.185:9527'
 response = send_image_to_ssd(filepath, url)
 image_name = 'out_image.png'
 with open(image_name, 'wb') as f:
