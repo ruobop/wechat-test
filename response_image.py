@@ -1,5 +1,6 @@
-# python wechat.py responses request from wechat platform
+# python response_image.py responses request from wechat server
 #-*-coding:utf-8 -*-
+
 from flask import Flask, request
 from flask import make_response
 import hashlib
@@ -11,6 +12,20 @@ app = Flask(__name__)
 @app.route('/')
 def hello_world():
     return 'Hello World!'
+
+# response at 127.0.0.1/ssd
+@app.route('/ssd', methods=['GET', 'POST'])
+def ssd():
+    if request.method == 'POST':
+        # fetch http POST data
+        in_image = request.data
+        # process image, send image to ssd detection
+        out_image = ssd(in_image)
+        # process out image, make out image to response
+        response = make_response(out_image)
+        # return out image within response
+        return response
+
 # response at 127.0.0.1/weixin/
 @app.route('/weixin', methods=['GET', 'POST'])
 def weixin():
