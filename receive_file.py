@@ -31,7 +31,7 @@ def upload_file():
             file.save(os.path.join('/home/ubuntu/caffe', filename))
             print '***********\n' + 'Processing image!\n' + '***********'
             plot_label.ssdetect('in_image.jpg', 'ssd_in_image')
-            return send_from_directory('/home/ubuntu/caffe/,
+            return send_from_directory('/home/ubuntu/caffe/',
                                        'ssd_in_image.png')
             # return app.send_static_file('in_image.jpg')
             # return redirect(url_for('uploaded_file',
