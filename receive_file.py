@@ -30,7 +30,7 @@ def upload_file():
             filename = secure_filename('in_image.jpg')
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             print '***********\n' + 'Processing image!\n' + '***********'
-            plotlabel.ssdetect('in_image.jpg', 'ssd_in_image')
+            plot_label.ssdetect('in_image.jpg', 'ssd_in_image')
             return send_from_directory('/home/ruobo/Desktop/wechat/wechat-test/wechat-test/',
                                        'ssd_in_image.png')
             # return app.send_static_file('in_image.jpg')
