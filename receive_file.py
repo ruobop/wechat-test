@@ -42,11 +42,11 @@ def upload_file():
 # @app.route('/<path:filename>')
 # def send_file(filename):
 #     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
-
-@app.route('/result/<path:path>')
-def send_js(path):
-    return send_from_directory('js', path)
+#
+# @app.route('/result/<path:path>')
+# def send_js(path):
+#     return send_from_directory('js', path)
 
 
 if __name__ == '__main__':
-    app.run(host = '127.0.0.1', port = 9527)
+    app.run(host = '0.0.0.1', port = 9527)
