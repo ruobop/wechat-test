@@ -30,6 +30,10 @@ def retrieve_token():
     return d['access_token']
 
 def get_token():
+    try:
+        check_expire()
+    except ValueError:
+        return new_access_token()
     if check_expire():
         return new_access_token()
     else:
