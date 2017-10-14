@@ -11,13 +11,13 @@ def send_image_to_ssd(image_path, url_port):
     f.close()
     return response
 
-filepath = '/home/ruobo/Desktop/paomian/IMG_20170928_101715.jpg'
-url = 'http://54.223.170.185:9527'
-response = send_image_to_ssd(filepath, url)
-image_name = 'out_image.png'
-with open(image_name, 'wb') as f:
-    for chunk in response.iter_content():
-        f.write(chunk)
+# filepath = '/home/ruobo/Desktop/paomian/IMG_20170928_101715.jpg'
+# url = 'http://54.223.170.185:9527'
+# response = send_image_to_ssd(filepath, url)
+# image_name = 'out_image.png'
+# with open(image_name, 'wb') as f:
+#     for chunk in response.iter_content():
+#         f.write(chunk)
 
 # r = send_image_to_ssd(filepath, url)
 
