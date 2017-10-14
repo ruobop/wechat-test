@@ -83,5 +83,5 @@ def saveimg(oridata, filepath):
     # f = open(path + '1.txt', 'w')
     # f.write(picurl + '\n' + path + name + '.jpg' + '\n')
     # f.close()
-    #print '********************\n' + picurl + '\n********************'
+    print '********************\n' + picurl + '\n********************'
     urllib.urlretrieve(picurl, filepath) # save url to jpg file
