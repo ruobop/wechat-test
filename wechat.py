@@ -5,6 +5,7 @@ from flask import make_response
 import hashlib
 import MsgParser
 import send_image_handler
+from send_image import send_image_to_ssd
 app = Flask(__name__)
 
 # response at 127.0.0.1/
@@ -42,9 +43,14 @@ def weixin():
         if data_xmldict['type'] == 'image':
             # reply = MsgParser.make_textmsg('收到了图片！', data_xmldict['to'],
             #                               data_xmldict['from'])
-            savepath = '/home/ubuntu/savedImg/1.jpg'
+            savepath = '/home/ubuntu/savedImg/in_image.jpg'
             MsgParser.saveimg(oridata, savepath)
-            sendpath = savepath
+            url = 'http://54.223.170.185:9527'
+            out_image_raw = send_image_to_ssd(filepath, url)
+            sendpath = '/home/ubuntu/savedImg/out_image.png'
+            with open(sendpath, 'wb') as f:
+                for chunk in out_image_raw.iter_content():
+                    f.write(chunk)
             # 发送图片给用户
             reply = send_image_handler.make_imgmsg(sendpath, data_xmldict['to'],
                                                    data_xmldict['from'])
