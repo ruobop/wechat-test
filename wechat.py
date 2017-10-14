@@ -45,8 +45,8 @@ def weixin():
             #                               data_xmldict['from'])
             savepath = '/home/ubuntu/savedImg/in_image.jpg'
             MsgParser.saveimg(oridata, savepath)
-            url = 'http://54.223.170.185:9527'
-            out_image_raw = send_image_to_ssd(filepath, url)
+            ssd_url = 'http://54.223.170.185:9527'
+            out_image_raw = send_image_to_ssd(savepath, ssd_url)
             sendpath = '/home/ubuntu/savedImg/out_image.png'
             with open(sendpath, 'wb') as f:
                 for chunk in out_image_raw.iter_content():
