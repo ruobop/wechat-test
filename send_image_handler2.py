@@ -16,4 +16,4 @@ def send_text_msg(text, fromuser, touser):
     headers = {'content-type': 'application/json'}
 
     response = requests.post(url, json_data, headers=headers)
-    print response
+    print response.read()
