@@ -5,11 +5,11 @@ import requests
 def send_text_msg(text, fromuser, touser):
     raw_data = """
     {
-        "touser":%s,
+        "touser":"%s",
         "msgtype":"text",
         "text":
         {
-            "content":%s
+            "content":"%s"
         }
     }
     """
