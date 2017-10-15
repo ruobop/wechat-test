@@ -32,7 +32,7 @@ def retrieve_token():
 def get_token():
     try:
         check_expire()
-    except ValueError:
+    except (ValueError, IOError):
         return new_access_token()
     if check_expire():
         return new_access_token()
