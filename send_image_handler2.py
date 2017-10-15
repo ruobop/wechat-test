@@ -4,14 +4,7 @@ import requests
 
 def send_text_msg(text, fromuser, touser):
     raw_data = """
-    {
-        "touser":"%s",
-        "msgtype":"text",
-        "text":
-        {
-            "content":"%s"
-        }
-    }
+    {"touser":"%s","msgtype":"text","text":{"content":"%s"}}
     """
     raw_data = raw_data % (touser, text)
     print raw_data
