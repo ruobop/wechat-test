@@ -1,5 +1,6 @@
 import json
 import access_token_handler
+import requests
 
 def send_text_msg(text, fromuser, touser):
     raw_data = """
