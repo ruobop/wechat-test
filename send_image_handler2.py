@@ -13,8 +13,8 @@ def send_text_msg(text, fromuser, touser):
     }
     """
     raw_data = raw_data % (touser, text)
-    print raw_data
     json_data = json.dumps(raw_data)
+    print json_data
     access_token = access_token_handler.get_token()
     url = ('https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=' +
            '%s')
