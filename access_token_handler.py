@@ -6,9 +6,13 @@ import requests
 import time
 
 def new_access_token():
+    # appid = 'wxddae0de1b0e43c9e' # 彭若波robby
+    # appsecret = '3694ea0bc550f5815547d4e182ab42b3' # 彭若波robby
+    appid = 'wxb8b26cc7a6236b84' # KiwiLens
+    appsecret = 'c39de4105ea7929132829e2cf0606ba8' # KiwiLens
     url = ('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_' +
-          'credential&appid=wxddae0de1b0e43c9e&secret=3694ea0bc550f58' +
-          '15547d4e182ab42b3')
+          'credential&appid=%s&secret=%s')
+    url = url % (appid, appsecret)
     response = requests.get(url)
     data = response.json()
     data['create_time'] = time.time()
