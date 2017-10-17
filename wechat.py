@@ -7,6 +7,10 @@ import MsgParser
 from send_image_handler2 import send_text_msg
 # import send_image_handler
 app = Flask(__name__)
+app.config.update(
+    CELERY_BROKER_URL='redis://localhost:6379/0',
+    CELERY_RESULT_BACKEND='redis://localhost:6379/1'
+)
 
 # response at 127.0.0.1/
 @app.route('/')
