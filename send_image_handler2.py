@@ -1,9 +1,17 @@
 from flask import Flask
 from celery import Celery
+import celery
 import json
 import access_token_handler
 import requests
 import time
+
+import send_msg_celery
+app.config.update(
+    CELERY_BROKER_URL='redis://localhost:6379/0',
+    CELERY_RESULT_BACKEND='redis://localhost:6379/1'
+)
+celery = send_msg_celery.make_celery(app)
 
 @celery.task()
 def send_text_msg(text, fromuser, touser):
