@@ -55,8 +55,8 @@ def weixin():
             # send back 'success', push work into back queue
             reply = MsgParser.make_textmsg('正在处理中，请稍候！',
                                       data_xmldict['to'], data_xmldict['from'],)
-            send_text_msg.delay('Hello World!', data_xmldict['to'],
-                          data_xmldict['from'])
+            send_text_msg('Hello World!', data_xmldict['to'],
+                          data_xmldict['from']).apply_async()
             # work on back queue
         else:
             reply = MsgParser.make_textmsg('没有收到图片，请发给我图片！',
