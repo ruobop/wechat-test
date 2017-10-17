@@ -3,6 +3,7 @@ import access_token_handler
 import requests
 
 def send_text_msg(text, fromuser, touser):
+    print touser
     raw_data = """
     {
         "touser":"%s",
