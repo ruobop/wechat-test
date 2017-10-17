@@ -4,13 +4,14 @@ from flask import Flask, request
 from flask import make_response
 import hashlib
 import MsgParser
-from send_image_handler2 import send_text_msg
+# from send_image_handler2 import send_text_msg
 # import send_image_handler
 app = Flask(__name__)
 app.config.update(
     CELERY_BROKER_URL='redis://localhost:6379/0',
     CELERY_RESULT_BACKEND='redis://localhost:6379/1'
 )
+celery = send_msg_celery.make_celery(app)
 
 # response at 127.0.0.1/
 @app.route('/')
@@ -59,6 +60,31 @@ def weixin():
         response = make_response(reply)
         response.content_type = 'application/xml'
         return response
+
+@celery.task()
+def send_text_msg(text, fromuser, touser):
+    print touser
+    raw_data = """
+    {
+        "touser":"%s",
+        "msgtype":"text",
+        "text":
+        {
+            "content":"%s"
+        }
+    }
+    """
+    raw_data = raw_data % (touser, text)
+    json_data = json.dumps(json.loads(raw_data))
+    print json_data
+    access_token = access_token_handler.get_token()
+    url = ('https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=' +
+           '%s')
+    url = url % (access_token)
+    headers = {'content-type': 'application/json'}
+    time.sleep(5)
+    response = requests.post(url, json_data, headers=headers)
+    print response.content
 
 if __name__ == '__main__':
     app.run(host = '0.0.0.0', port = 80)

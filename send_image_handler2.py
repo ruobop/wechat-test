@@ -7,8 +7,6 @@ import requests
 import time
 import send_msg_celery
 
-celery = send_msg_celery.make_celery(app)
-
 @celery.task()
 def send_text_msg(text, fromuser, touser):
     print touser
