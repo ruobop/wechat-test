@@ -7,6 +7,12 @@ import MsgParser
 from send_image_handler2 import send_text_msg
 # import send_image_handler
 app = Flask(__name__)
+import send_msg_celery
+app.config.update(
+    CELERY_BROKER_URL='redis://localhost:6379/0',
+    CELERY_RESULT_BACKEND='redis://localhost:6379/1'
+)
+send_msg_celery.celery = make_celery(app)
 
 # response at 127.0.0.1/
 @app.route('/')
@@ -46,7 +52,8 @@ def weixin():
             # send back 'success', push work into back queue
             reply = MsgParser.make_textmsg('正在处理中，请稍候！',
                                       data_xmldict['to'], data_xmldict['from'],)
-            send_text_msg('Hello World!', data_xmldict['to'], data_xmldict['from'])
+            send_text_msg.apply_async('Hello World!',
+                                       data_xmldict['to'], data_xmldict['from'])
             # work on back queue
         else:
             reply = MsgParser.make_textmsg('没有收到图片，请发给我图片！',

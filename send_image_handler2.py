@@ -1,7 +1,11 @@
+from flask import Flask
+from celery import Celery
 import json
 import access_token_handler
 import requests
+import time
 
+@celery.task()
 def send_text_msg(text, fromuser, touser):
     print touser
     raw_data = """
@@ -22,6 +26,6 @@ def send_text_msg(text, fromuser, touser):
            '%s')
     url = url % (access_token)
     headers = {'content-type': 'application/json'}
-
+    time.sleep(5)
     response = requests.post(url, json_data, headers=headers)
     print response.content
