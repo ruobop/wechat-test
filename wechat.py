@@ -17,6 +17,31 @@ app.config.update(
 )
 celery = send_msg_celery.make_celery(app)
 
+@celery.task()
+def send_text_msg(text, fromuser, touser):
+    print touser
+    raw_data = """
+    {
+        "touser":"%s",
+        "msgtype":"text",
+        "text":
+        {
+            "content":"%s"
+        }
+    }
+    """
+    raw_data = raw_data % (touser, text)
+    json_data = json.dumps(json.loads(raw_data))
+    print json_data
+    access_token = access_token_handler.get_token()
+    url = ('https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=' +
+           '%s')
+    url = url % (access_token)
+    headers = {'content-type': 'application/json'}
+    time.sleep(5)
+    response = requests.post(url, json_data, headers=headers)
+    print response.content
+
 # response at 127.0.0.1/
 @app.route('/')
 def hello_world():
@@ -64,31 +89,6 @@ def weixin():
         response = make_response(reply)
         response.content_type = 'application/xml'
         return response
-
-@celery.task()
-def send_text_msg(text, fromuser, touser):
-    print touser
-    raw_data = """
-    {
-        "touser":"%s",
-        "msgtype":"text",
-        "text":
-        {
-            "content":"%s"
-        }
-    }
-    """
-    raw_data = raw_data % (touser, text)
-    json_data = json.dumps(json.loads(raw_data))
-    print json_data
-    access_token = access_token_handler.get_token()
-    url = ('https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=' +
-           '%s')
-    url = url % (access_token)
-    headers = {'content-type': 'application/json'}
-    time.sleep(5)
-    response = requests.post(url, json_data, headers=headers)
-    print response.content
 
 if __name__ == '__main__':
     app.run(host = '0.0.0.0', port = 80)
