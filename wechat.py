@@ -5,7 +5,7 @@ from flask import make_response
 import hashlib
 import MsgParser
 # from send_image_handler2 import send_text_msg
-import send_image_handler
+import send_msg_celery
 app = Flask(__name__)
 app.config.update(
     CELERY_BROKER_URL='redis://localhost:6379/0',
