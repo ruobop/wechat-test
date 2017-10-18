@@ -97,6 +97,7 @@ def make_imgmsg(filepath, fromuser, touser):
             # time.sleep(5)
             response = requests.post(url, json_data, headers=headers)
             print response.content
+    print "media id error!"
     sys.exit('error when getting media_id!')
 
 from wechat import celery
