@@ -75,6 +75,7 @@ import access_token_handler
 def make_imgmsg(filepath, fromuser, touser):
     for i in range(0, 5): # try upload 5 times
         media_id = upload_temp_media(filepath)
+        print media_id
         if media_id != 'error':
             raw_data = """
             {
