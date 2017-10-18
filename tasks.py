@@ -88,7 +88,7 @@ def make_imgmsg(filepath, fromuser, touser):
             """
             raw_data = raw_data % (touser, media_id)
             json_data = json.dumps(json.loads(raw_data))
-            # print json_data
+            print json_data
             access_token = access_token_handler.get_token()
             url = ('https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=' +
                    '%s')
@@ -96,6 +96,7 @@ def make_imgmsg(filepath, fromuser, touser):
             headers = {'content-type': 'application/json'}
             # time.sleep(5)
             response = requests.post(url, json_data, headers=headers)
+            print response.content
     sys.exit('error when getting media_id!')
 
 from wechat import celery
