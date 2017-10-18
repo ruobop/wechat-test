@@ -17,6 +17,7 @@ from wechat import celery
 import time
 import json
 import requests
+import access_token_handler
 @celery.task()
 def send_text_msg(text, fromuser, touser):
     print touser
