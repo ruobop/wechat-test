@@ -41,4 +41,7 @@ def get_token():
     if check_expire():
         return new_access_token()
     else:
-        return retrieve_token()
+        try:
+            return retrieve_token()
+        except KeyError:
+            return new_access_token()

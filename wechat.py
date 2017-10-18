@@ -51,10 +51,17 @@ def weixin():
             # reply = MsgParser.make_textmsg('收到了图片！', data_xmldict['to'],
             #                               data_xmldict['from'])
             # send back 'success', push work into back queue
+            savepath = '/home/ubuntu/savedImg/in_image.jpg'
+            url_port = 'http://54.223.170.185:9527'
+            sendpath = '/home/ubuntu/savedImg/out_image.png'
+            fromuser = data_xmldict['to']
+            data_xmldict['from']
             reply = MsgParser.make_textmsg('正在处理中，请稍候！',
                                       data_xmldict['to'], data_xmldict['from'],)
-            tasks.send_text_msg.delay('Hello World!', data_xmldict['to'],
-                          data_xmldict['from'])
+            # tasks.send_text_msg.delay('Hello World!', data_xmldict['to'],
+            #               data_xmldict['from'])
+            tasks.save_send_img.delay(oridata, savepath, url_port, sendpath,
+                                      fromuser, touser)
             # work on back queue
         else:
             reply = MsgParser.make_textmsg('没有收到图片，请发给我图片！',
