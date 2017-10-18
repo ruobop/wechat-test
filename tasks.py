@@ -1,6 +1,8 @@
 # -*- coding:utf-8 -*-
 from celery import Celery
 import time
+import json
+import requests
 def make_celery(app):
     celery = Celery(app.import_name, backend=app.config['CELERY_RESULT_BACKEND'],
                     broker=app.config['CELERY_BROKER_URL'])
