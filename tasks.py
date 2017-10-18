@@ -5,7 +5,6 @@ import requests
 import time
 import xml.etree.ElementTree as ET
 import sys
-import urllib
 from celery import Celery
 def make_celery(app):
     celery = Celery(app.import_name, backend=app.config['CELERY_RESULT_BACKEND'],
@@ -44,6 +43,7 @@ def send_text_msg(text, fromuser, touser):
     response = requests.post(url, json_data, headers=headers)
     print response.content
 
+import urllib
 def saveimg(oridata, filepath):
     xmldata = ET.fromstring(oridata)
     picurl = xmldata.find("PicUrl").text
