@@ -71,23 +71,31 @@ def upload_temp_media(filepath):
     else:
         return 'error'
 
+import access_token_handler
 def make_imgmsg(filepath, fromuser, touser):
     for i in range(0, 5): # try upload 5 times
         media_id = upload_temp_media(filepath)
         if media_id != 'error':
-            reply = """
-            <xml>
-                <ToUserName><![CDATA[%s]]></ToUserName>
-                <FromUserName><![CDATA[%s]]></FromUserName>
-                <CreateTime>%s</CreateTime>
-                <MsgType><![CDATA[image]]></MsgType>
-                <Image>
-                <MediaId><![CDATA[%s]]></MediaId>
-                </Image>
-            </xml>
-        	"""
-            resp_str = reply % (touser, fromuser, int(time.time()), media_id)
-            return resp_str
+            raw_data = """
+            {
+                "touser":"%s",
+                "msgtype":"image",
+                "image":
+                {
+                    "media_id":"%s"
+                }
+            }
+            """
+            raw_data = raw_data % (touser, media_id)
+            json_data = json.dumps(json.loads(raw_data))
+            # print json_data
+            access_token = access_token_handler.get_token()
+            url = ('https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=' +
+                   '%s')
+            url = url % (access_token)
+            headers = {'content-type': 'application/json'}
+            # time.sleep(5)
+            response = requests.post(url, json_data, headers=headers)
     sys.exit('error when getting media_id!')
 
 from wechat import celery
