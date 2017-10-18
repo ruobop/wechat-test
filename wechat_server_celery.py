@@ -1,7 +1,7 @@
 #-*-coding:utf-8 -*-
 from flask import Flask, request
 # from flask import make_response
-# import hashlib
+import hashlib
 # import MsgParser
 # from send_image_handler2 import send_text_msg
 # import send_msg_celery
