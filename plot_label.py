@@ -65,7 +65,7 @@ def ssdetect(oriimage, detectimage):
     net.blobs['data'].reshape(1,3,image_resize,image_resize)
 
     image = caffe.io.load_image(oriimage)
-    plt.imshow(image)
+    fig = plt.imshow(image)
 
     transformed_image = transformer.preprocess('data', image)
     net.blobs['data'].data[...] = transformed_image
@@ -94,7 +94,7 @@ def ssdetect(oriimage, detectimage):
 
     colors = plt.cm.hsv(np.linspace(0, 1, 4)).tolist()
 
-    plt.imshow(image)
+    fig = plt.imshow(image)
     currentAxis = plt.gca()
 
     for i in xrange(top_conf.shape[0]):
