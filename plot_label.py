@@ -3,8 +3,9 @@ def ssdetect(oriimage, detectimage):
     import numpy as np
     import matplotlib
     matplotlib.use('Agg')
+    import matplotlib
+    matplotlib.rcParams['font.sans-serif'] = 'MI LANTING'
     import matplotlib.pyplot as plt
-    # %matplotlib inline
 
     plt.rcParams['figure.figsize'] = (10, 10)
     plt.rcParams['image.interpolation'] = 'nearest'
@@ -46,7 +47,7 @@ def ssdetect(oriimage, detectimage):
         return labelnames
 
     model_def = '/home/ubuntu/caffe/models/VGGNet/PMWLYZ/SSD_300x300/deploy.prototxt'
-    model_weights = '/home/ubuntu/caffe/models/VGGNet/PMWLYZ/SSD_300x300/VGG_PMWLYZ_SSD_300x300_iter_17494.caffemodel'
+    model_weights = '/home/ubuntu/caffe/models/VGGNet/PMWLYZ/SSD_300x300/VGG_PMWLYZ_SSD_300x300_iter_17936.caffemodel'
 
     net = caffe.Net(model_def,      # defines the structure of the model
                     model_weights,  # contains the trained weights
@@ -81,7 +82,7 @@ def ssdetect(oriimage, detectimage):
     det_ymax = detections[0,0,:,6]
 
     # Get detections with confidence higher than 0.6.
-    top_indices = [i for i, conf in enumerate(det_conf) if conf >= 0.6]
+    top_indices = [i for i, conf in enumerate(det_conf) if conf >= 0.7]
 
     top_conf = det_conf[top_indices]
     top_label_indices = det_label[top_indices].tolist()
@@ -91,7 +92,7 @@ def ssdetect(oriimage, detectimage):
     top_xmax = det_xmax[top_indices]
     top_ymax = det_ymax[top_indices]
 
-    colors = plt.cm.hsv(np.linspace(0, 1, 21)).tolist()
+    colors = plt.cm.hsv(np.linspace(0, 1, 4)).tolist()
 
     plt.imshow(image)
     currentAxis = plt.gca()
@@ -110,5 +111,4 @@ def ssdetect(oriimage, detectimage):
         currentAxis.add_patch(plt.Rectangle(*coords, fill=False, edgecolor=color, linewidth=2))
         currentAxis.text(xmin, ymin, display_txt, bbox={'facecolor':color, 'alpha':0.5})
 
-    # plt.savefig('../test_img')
     plt.savefig(detectimage)

@@ -5,7 +5,7 @@ from werkzeug.utils import secure_filename
 import plot_label
 
 UPLOAD_FOLDER = '/home/ubuntu/wechat-test/'
-ALLOWED_EXTENSIONS = set(['pdf', 'png', 'jpg', 'jpeg'])
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 app = Flask(__name__)
 # app._static_folder = '/home/ruobo/Desktop/wechat/wechat-test/wechat-test/'
@@ -30,9 +30,9 @@ def upload_file():
             filename = secure_filename('in_image.jpg')
             file.save(os.path.join('/home/ubuntu/caffe', filename))
             print '***********\n' + 'Processing image!\n' + '***********'
-            plot_label.ssdetect('in_image.jpg', 'ssd_in_image')
+            plot_label.ssdetect('in_image.jpg', 'ssd_in_image.jpg')
             return send_from_directory('/home/ubuntu/caffe/',
-                                       'ssd_in_image.png')
+                                       'ssd_in_image.jpg')
             # return app.send_static_file('in_image.jpg')
             # return redirect(url_for('uploaded_file',
             #                        filename=filename))
