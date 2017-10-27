@@ -92,7 +92,7 @@ def ssdetect(oriimage, detectimage):
     top_xmax = det_xmax[top_indices]
     top_ymax = det_ymax[top_indices]
 
-    colors = plt.cm.hsv(np.linspace(0, 1, 4)).tolist()
+    colors = plt.cm.hsv(np.linspace(0, 1, 10)).tolist()
 
     fig = plt.imshow(image)
     currentAxis = plt.gca()
