@@ -94,7 +94,7 @@ def ssdetect(oriimage, detectimage):
 
     colors = plt.cm.hsv(np.linspace(0, 1, 10)).tolist()
 
-    fig = plt.imshow(image)
+    # fig = plt.imshow(image)
     currentAxis = plt.gca()
 
     for i in xrange(top_conf.shape[0]):
@@ -114,3 +114,4 @@ def ssdetect(oriimage, detectimage):
     fig.axes.get_xaxis().set_visible(False)
     fig.axes.get_yaxis().set_visible(False)
     plt.savefig(detectimage, bbox_inches='tight', pad_inches=0)
+    plt.close('all')
